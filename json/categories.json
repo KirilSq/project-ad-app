@@ -1,0 +1,9 @@
+{
+  "categories": [
+    { "name": "Auto", "slug": "auto" },
+    { "name": "Electronics", "slug": "electronics" },
+    { "name": "Sport", "slug": "sport" },
+    { "name": "Home stuff", "slug": "home" },
+    { "name": "Clothing and Jewlery", "slug": "fashion" }
+  ]
+}
