@@ -1,9 +1,51 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <link rel="stylesheet" href="css/index.css"/>
+    <title>Adap Home</title>
   </head>
-  <body></body>
+  <body>
+    <header>
+      <a class="logo-link" href="index.html"
+        ><img src="images/logo.png" alt="Adap logo" class="logo"
+      /></a>
+      <nav class="user-nav" aria-label="Page Type Selector">
+        <ul>
+          <li class="guest-only"><a href="pages/login.html">Sign in</a></li>
+          <li class="user-only"><a href="index.html">Sign out</li>
+          <li class="user-only"><a href="#">Profile</a></li>
+          <li class="user-only">
+            <a href="pages/profile.html"
+              >Cart <span class="cart-count"></span
+            ></a>
+          </li>
+          <li class="user-only"><a href="pages/favorites.html">Favorites</a></li>
+          <li class="user-only">
+            Balance<span class="balanceAmount">0.00</span>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <section id="product-name-search-bar">
+        <input type="text" id="product-name-search-bar-input" />
+      </section>
+      <section id="category-section">
+        <ul id="category-list">
+        </ul>
+      </section>
+    </main>
+    <footer>
+      <nav>
+        <ul>
+          <li><a href="#">Terms of use</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Company Info</a></li>
+        </ul>
+      </nav>
+    </footer>
+    <script src="js/index.js"></script>
+  </body>
 </html>
