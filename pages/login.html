@@ -1,9 +1,10 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <link rel="stylesheet" href="../css/login.css" />
+    <title>Adap login</title>
   </head>
   <body>
     <div class="login-wrap">
@@ -13,8 +14,10 @@
         /></a>
       </header>
       <div id="form-type-selection">
-        <button class="form-type-btn active" id="signin-btn">Sign in</button>
-        <button class="form-type-btn" id="signup-btn">Sign up</button>
+        <button class="form-type-btn active" id="signin-select-btn">
+          Sign in
+        </button>
+        <button class="form-type-btn" id="signup-select-btn">Sign up</button>
       </div>
       <form>
         <div class="input-wrap">
@@ -31,7 +34,7 @@
               <line x1="3" y1="3" x2="21" y2="21" class="slash-line"></line>
             </svg>
           </span>
-          <div id="pass-requrements" class="signup-el">
+          <div id="pass-requrements" class="signup-el hidden">
             <h4>Requirements:</h4>
             <ul id="pass-requirements-list">
               <li>8+ characters</li>
@@ -47,12 +50,12 @@
         </div>
         <div class="submit-btn-wrap">
           <button type="submit" class="submit-btn signin-el">Login</button>
-          <button type="submit" class="submit-btn signup-el">
+          <button type="submit" class="submit-btn signup-el hidden">
             Create account
           </button>
         </div>
         <div class="tos-reminder-wrap">
-          <div class="tos-reminder signup-el">
+          <div class="tos-reminder signup-el hidden">
             When creating an account, you agree to our User Agreement and
             acknowledge reading our User Privacy Notice.
           </div>
@@ -135,5 +138,6 @@
         </div>
       </form>
     </div>
+    <script src="../js/login.js"></script>
   </body>
 </html>
