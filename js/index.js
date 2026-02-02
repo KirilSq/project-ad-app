@@ -1,0 +1,41 @@
+async function initialize() {
+  try {
+    const response = await fetch("json/categories.json");
+    const data = await response.json();
+    renderCategories(data.categories);
+    setupSearch();
+  } catch (error) {
+    console.error("Error loading data:", error);
+  }
+}
+
+function renderCategories(categories) {
+  const categoryList = document.getElementById("category-list");
+
+  categories.forEach((cat) => {
+    const li = document.createElement("li");
+    li.innerHTML = `<a href="pages/listings.html?cat=${cat.slug}">${cat.name}</a>`;
+    categoryList.appendChild(li);
+  });
+}
+
+function setupSearch() {
+  const searchBtn = document.getElementById("search-btn");
+  const searchInput = document.getElementById("product-name-search-bar-input");
+
+  searchBtn.addEventListener("click", () => {
+    const query = searchInput.value.trim();
+
+    if (query === "") {
+      window.location.href = `pages/listings.html`;
+    } else {
+      window.location.href = `pages/listings.html?search=${encodeURIComponent(query)}`;
+    }
+  });
+
+  searchInput.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") searchBtn.click();
+  });
+}
+
+initialize();
