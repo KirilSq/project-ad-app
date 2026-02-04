@@ -1,9 +1,9 @@
-import { initializeApp } from "firebase/app";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-app.js";
 import {
   getAuth,
+  createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  onAuthStateChanged,
-} from "firebase/auth";
+} from "https://www.gstatic.com/firebasejs/9.6.7/firebase-auth.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBlAIqRDsb7bM_BgogJGMikHQlC-mndwOk",
@@ -16,7 +16,7 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const auth = getAuth();
+const auth = getAuth(app);
 
 const signInSelectButton = document.getElementById("signin-select-btn");
 const signUpSelectButton = document.getElementById("signup-select-btn");
