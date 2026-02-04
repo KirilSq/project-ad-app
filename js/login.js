@@ -35,7 +35,7 @@ if (signUpBtn) {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in
-        window.location.href = "index.html";
+        window.location.href = "../index.html";
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -54,7 +54,7 @@ if (signInBtn) {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in
-        window.location.href = "index.html";
+        window.location.href = "../index.html";
       })
       .catch((error) => {
         const errorCode = error.code;
