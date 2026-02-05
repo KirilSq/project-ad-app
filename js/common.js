@@ -1,5 +1,8 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-app.js";
-import { getAuth } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-auth.js";
+import {
+  getAuth,
+  onAuthStateChanged,
+} from "https://www.gstatic.com/firebasejs/9.6.7/firebase-auth.js";
 import {
   getDatabase,
   ref,
@@ -22,6 +25,25 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const database = getDatabase(app);
+
+function toggleNavbarElementsVisibility(isLoggedIn) {
+  const userOnlyElements = document.getElementsByClassName("user-only");
+  const guestOnlyElements = document.getElementsByClassName("guest-only");
+  Array.from(userOnlyElements).forEach((el) => {
+    el.style.display = isLoggedIn ? "block" : "none";
+  });
+  Array.from(guestOnlyElements).forEach((el) => {
+    el.style.display = isLoggedIn ? "none" : "block";
+  });
+}
+
+onAuthStateChanged(auth, (user) => {
+  toggleNavbarElementsVisibility(!!user);
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  toggleNavbarElementsVisibility(!!auth.currentUser);
+});
 
 async function removeFromFavorites(userId, adId) {
   try {
