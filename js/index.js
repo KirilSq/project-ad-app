@@ -20,21 +20,17 @@ function renderCategories(categories) {
 }
 
 function setupSearch() {
-  const searchBtn = document.getElementById("search-btn");
   const searchInput = document.getElementById("product-name-search-bar-input");
 
-  searchBtn.addEventListener("click", () => {
-    const query = searchInput.value.trim();
-
-    if (query === "") {
-      window.location.href = `pages/listings.html`;
-    } else {
-      window.location.href = `pages/listings.html?search=${encodeURIComponent(query)}`;
-    }
-  });
-
   searchInput.addEventListener("keypress", (e) => {
-    if (e.key === "Enter") searchBtn.click();
+    if (e.key === "Enter") {
+      const query = searchInput.value.trim();
+      if (query === "") {
+        window.location.href = `pages/listings.html`;
+      } else {
+        window.location.href = `pages/listings.html?search=${encodeURIComponent(query)}`;
+      }
+    }
   });
 }
 
