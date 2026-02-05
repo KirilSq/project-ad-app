@@ -1,9 +1,12 @@
+import { setupNavbarElementsVisibility } from "./common.js";
+
 async function initialize() {
   try {
     const response = await fetch("json/categories.json");
     const data = await response.json();
     renderCategories(data.categories);
     setupSearch();
+    setupNavbarElementsVisibility();
   } catch (error) {
     console.error("Error loading data:", error);
   }

@@ -1,30 +1,12 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-app.js";
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-auth.js";
 import {
-  getAuth,
-  onAuthStateChanged,
-} from "https://www.gstatic.com/firebasejs/9.6.7/firebase-auth.js";
-import {
-  getDatabase,
   ref,
   set,
   remove,
+  update,
 } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-database.js";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyBlAIqRDsb7bM_BgogJGMikHQlC-mndwOk",
-  authDomain: "project-add-ap.firebaseapp.com",
-  projectId: "project-add-ap",
-  storageBucket: "project-add-ap.firebasestorage.app",
-  messagingSenderId: "278432857215",
-  appId: "1:278432857215:web:89e7bffb14e2d9af50934a",
-  measurementId: "G-8ZRG7HCHH5",
-  databaseURL:
-    "https://project-add-ap-default-rtdb.europe-west1.firebasedatabase.app/",
-};
-
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const database = getDatabase(app);
+import { database, auth, app } from "./firebase-config.js";
 
 function toggleNavbarElementsVisibility(isLoggedIn) {
   const userOnlyElements = document.getElementsByClassName("user-only");
@@ -37,13 +19,15 @@ function toggleNavbarElementsVisibility(isLoggedIn) {
   });
 }
 
-onAuthStateChanged(auth, (user) => {
-  toggleNavbarElementsVisibility(!!user);
-});
+export function setupNavbarElementsVisibility() {
+  onAuthStateChanged(auth, (user) => {
+    toggleNavbarElementsVisibility(!!user);
+  });
 
-document.addEventListener("DOMContentLoaded", () => {
-  toggleNavbarElementsVisibility(!!auth.currentUser);
-});
+  document.addEventListener("DOMContentLoaded", () => {
+    toggleNavbarElementsVisibility(!!auth.currentUser);
+  });
+}
 
 async function removeFromFavorites(userId, adId) {
   try {
@@ -99,4 +83,20 @@ async function updateUserDescription(userId, newDescription) {
     console.error("Error updating description: ", error);
     return false;
   }
+}
+
+export async function createAd(userId, adData) {
+  const newAdKey = push(child(ref(database), "ads")).key;
+  const updates = {};
+  updates["ads/" + newAdKey] = adData;
+  updates[`users/${userId}/ads/${newAdKey}`] = adData;
+
+  return update(ref(database), updates);
+}
+
+export async function deleteAd(userId, adId) {
+  const updates = {};
+  updates["ads/" + adId] = null;
+  updates[`users/${userId}/ads/${adId}`] = null;
+  return update(ref(database), updates);
 }

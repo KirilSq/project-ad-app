@@ -5,24 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Profile</title>
     <link rel="stylesheet" href="../css/common.css" />
+    <link rel="stylesheet" href="../css/profile.css" />
   </head>
   <body>
     <header>
-      <a class="logo-link" href="index.html"
-        ><img src="images/logo.png" alt="Adap logo" class="logo"
-      /></a>
+      <a class="logo-link" href="../index.html">
+        <img src="../images/logo.png" alt="Adap logo" class="logo" />
+      </a>
       <nav class="user-nav" aria-label="Page Type Selector">
         <ul>
           <li class="guest-only"><a href="login.html">Sign in</a></li>
           <li class="user-only"><a href="../index.html">Sign out</a></li>
           <li class="user-only">
-           <span>Balance</span> <span class="balance-info"></span>
+            <span>Balance </span><span id="my-balance"></span>
           </li>
           <li class="user-only"><a href="profile.html">Profile</a></li>
           <li class="user-only">
-            <a href="cart.html"
-              >Cart <span class="cart-count"></span
-            ></a>
+            <a href="cart.html">Cart <span class="cart-count"></span></a>
           </li>
           <li class="user-only">
             <a href="favorites.html">Favorites</a>
@@ -31,18 +30,32 @@
       </nav>
     </header>
     <main>
-      <h1>My Profile</h1>
-      <button id="edit-profile-btn">Edit profile</button>
-      <section id="profile-info">
-        <p>Email: <span id="email-info"></span></p>
-        <p>Balance: <span id="balance-info"></span></p>
-        <p>Contact Info: <span id="contact-info"></span></p>
-        <p>Description: <span id="description-info"></span></p>
-        <p>Personald Ads:
-            <ul id="personal-ads-list">
-            </ul>
-        </p>
-      </section>
+      <div id="profile-info-wrap">
+        <h1>My Profile</h1>
+        <button id="edit-profile-btn">Edit profile</button>
+        <section id="profile-info">
+          <p>Email: <span id="email-info"></span></p>
+          <p>Balance: <span id="balance-info"></span></p>
+          <p>Contact Info: <span id="contact-info"></span></p>
+          <p>Description: <span id="description-info"></span></p>
+          <p>Personal Ads:</p>
+          <a href="ad-creation.html">Create new ad</a>
+          <ul id="personal-ads-list"></ul>
+        </section>
+      </div>
+      <div id="profile-edit-wrap">
+            <h1>Edit Profile</h1>
+            <form id="profile-edit-form">
+            <div class="input-wrap">
+              <label for="contact-info-input">Contact Info</label>
+              <input type="text" id="contact-info-input" placeholder="Your contact info" required />
+            </div>
+            <div class="input-wrap">
+              <label for="description-input">Description</label>
+              <textarea id="description-input" placeholder="A little bit about you" required></textarea>
+            </div>
+            <button type="submit">Save Changes</button>
+      </div>
     </main>
     <footer>
       <nav>
@@ -53,5 +66,6 @@
         </ul>
       </nav>
     </footer>
+    <script type="module" src="../js/profile.js"></script>
   </body>
 </html>
