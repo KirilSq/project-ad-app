@@ -4,6 +4,12 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-auth.js";
+import {
+  getDatabase,
+  ref,
+  set,
+} from "https://www.gstatic.com/firebasejs/9.6.7/firebase-database.js";
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyBlAIqRDsb7bM_BgogJGMikHQlC-mndwOk",
@@ -13,10 +19,12 @@ const firebaseConfig = {
   messagingSenderId: "278432857215",
   appId: "1:278432857215:web:89e7bffb14e2d9af50934a",
   measurementId: "G-8ZRG7HCHH5",
+  databaseURL:https://project-add-ap-default-rtdb.europe-west1.firebasedatabase.app/
 };
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+const database = getDatabase(app);
 
 const signInSelectButton = document.getElementById("signin-select-btn");
 const signUpSelectButton = document.getElementById("signup-select-btn");
@@ -27,14 +35,29 @@ const passwordInput = document.getElementById("password-input");
 const signInBtn = document.querySelector(".submit-btn.signin-el");
 const signUpBtn = document.querySelector(".submit-btn.signup-el");
 
+async function writeInitialUserData(userId, email) {
+  await set(ref(database, 'users/' + userId), {
+    email: email,
+    balance: 0,
+    contactInfo: "",
+    favorites: {},
+    cart: {},
+    ads: {},
+    description: ""
+  });
+}
+
+
+
 if (signUpBtn) {
-  signUpBtn.addEventListener("click", (e) => {
+  signUpBtn.addEventListener("click", async (e) => {
     e.preventDefault();
     const email = emailInput.value;
     const password = passwordInput.value;
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        // Signed in
+        const user = userCredential.user;
+        writeInitialUserData(user.uid, email);
         window.location.href = "../index.html";
       })
       .catch((error) => {
@@ -47,13 +70,12 @@ if (signUpBtn) {
 }
 
 if (signInBtn) {
-  signInBtn.addEventListener("click", (e) => {
+  signInBtn.addEventListener("click", async (e) => {
     e.preventDefault();
     const email = emailInput.value;
     const password = passwordInput.value;
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        // Signed in
         window.location.href = "../index.html";
       })
       .catch((error) => {
