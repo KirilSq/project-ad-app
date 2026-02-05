@@ -100,3 +100,33 @@ export async function deleteAd(userId, adId) {
   updates[`users/${userId}/ads/${adId}`] = null;
   return update(ref(database), updates);
 }
+
+export function visualizeAds(ads, listElement, buttons) {
+  listElement.innerHTML = "";
+
+  if (!ads || ads.length === 0) {
+    listElement.textContent = "No ads found.";
+    return;
+  }
+
+  ads.forEach((ad) => {
+    const li = document.createElement("li");
+    li.className = "ad-card";
+
+    li.innerHTML = `
+      <div class="ad-content">
+        <h3>${ad.title}</h3>
+        <p class="category">${ad.category || "General"}</p>
+        <p class="description">${ad.description}</p>
+        <p class="price">€${parseFloat(ad.price).toFixed(2)}</p>
+        <p class="meta">Posted by: ${ad.userEmail}</p>
+      </div>
+    `;
+
+    if (buttons) {
+      li.appendChild(buttons);
+    }
+
+    listElement.appendChild(li);
+  });
+}
