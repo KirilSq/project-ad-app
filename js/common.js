@@ -68,3 +68,13 @@ async function updateUserBalance(userId, newBalance) {
     return false;
   }
 }
+
+async function updateUserDescription(userId, newDescription) {
+  try {
+    await set(ref(database, `users/${userId}/description`), newDescription);
+    return true;
+  } catch (error) {
+    console.error("Error updating description: ", error);
+    return false;
+  }
+}
