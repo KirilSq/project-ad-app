@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile</title>
+    <link rel="stylesheet" href="../css/common.css" />
+  </head>
+  <body>
+    <header>
+      <a class="logo-link" href="index.html"
+        ><img src="images/logo.png" alt="Adap logo" class="logo"
+      /></a>
+      <nav class="user-nav" aria-label="Page Type Selector">
+        <ul>
+          <li class="guest-only"><a href="login.html">Sign in</a></li>
+          <li class="user-only"><a href="../index.html">Sign out</a></li>
+          <li class="user-only">
+           <span>Balance</span> <span class="balance-info"></span>
+          </li>
+          <li class="user-only"><a href="profile.html">Profile</a></li>
+          <li class="user-only">
+            <a href="cart.html"
+              >Cart <span class="cart-count"></span
+            ></a>
+          </li>
+          <li class="user-only">
+            <a href="favorites.html">Favorites</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <h1>My Profile</h1>
+      <button id="edit-profile-btn">Edit profile</button>
+      <section id="profile-info">
+        <p>Email: <span id="email-info"></span></p>
+        <p>Balance: <span id="balance-info"></span></p>
+        <p>Contact Info: <span id="contact-info"></span></p>
+        <p>Description: <span id="description-info"></span></p>
+        <p>Personald Ads:
+            <ul id="personal-ads-list">
+            </ul>
+        </p>
+      </section>
+    </main>
+    <footer>
+      <nav>
+        <ul>
+          <li><a href="#">Terms of use</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Company Info</a></li>
+        </ul>
+      </nav>
+    </footer>
+  </body>
+</html>
