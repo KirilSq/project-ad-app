@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/common.css" />
+    <link rel="stylesheet" href="../css/listings.css" />
+    <title>Adap's ads</title>
+  </head>
+  <body>
+    <header>
+      <a class="logo-link" href="../index.html">
+        <img src="../images/logo.png" alt="Adap logo" class="logo" />
+      </a>
+      <nav class="user-nav" aria-label="Page Type Selector">
+        <ul>
+          <li class="guest-only"><a href="login.html">Sign in</a></li>
+          <li class="user-only"><button id="signout-btn">Sign out</button></li>
+          <li class="user-only">
+            <span>Balance </span><span id="my-balance"></span>
+          </li>
+          <li class="user-only"><a href="profile.html">Profile</a></li>
+          <li class="user-only">
+            <a href="cart.html">Cart <span class="cart-count"></span></a>
+          </li>
+          <li class="user-only">
+            <a href="favorites.html">Favorites</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <div class="listings-layout">
+        <aside id="filter-and-sort-sidebar">
+          <div>
+            <label for="sort-select">Sort by:</label>
+            <select id="sort-select">
+              <option value="price-ascending">Price: Ascending</option>
+              <option value="price-descending">Price: Descending</option>
+            </select>
+          </div>
+          <div>
+            <label for="category-filter">Category:</label>
+            <select id="category-filter"></select>
+          </div>
+          <div>
+            <label for="min-price-filter">Min Price(€):</label>
+            <input
+              type="number"
+              id="min-price-filter"
+              placeholder="0.00"
+              min="0"
+              step="0.01"
+            />
+          </div>
+          <div>
+            <label for="max-price-filter">Max Price(€):</label>
+            <input type="number" id="max-price-filter" min="0" step="0.01" />
+          </div>
+          <button id="apply-filters-btn">Apply Filters & Sorting</button>
+        </aside>
+        <div class="main-content-area">
+          <section id="searchbar">
+            <input
+              type="text"
+              id="product-name-search-bar-input"
+              placeholder="Search ads by name..."
+            />
+          </section>
+          <section id="ads-list-section">
+            <ul id="ads-list"></ul>
+          </section>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <nav>
+        <ul>
+          <li><a href="#">Terms of use</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Company Info</a></li>
+        </ul>
+      </nav>
+    </footer>
+    <script type="module" src="../js/listings.js"></script>
+  </body>
+</html>

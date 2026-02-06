@@ -1,9 +1,9 @@
 :root {
   --header-color: white;
   --header-text-color: black;
-  --body-color: green;
-  --footer-color: red;
-  --footer-text-color: black;
+  --body-color: #f2f4f5;
+  --footer-color: black;
+  --footer-text-color: lightgray;
 }
 
 * {
@@ -27,7 +27,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 0.1rem solid black;
+  border-bottom: 0.1rem solid lightgray;
 
   position: fixed;
   top: 0;
@@ -88,6 +88,8 @@ footer a {
   font-weight: bold;
   font-size: larger;
   color: var(--header-text-color);
+  border: none;
+  background-color: transparent;
 }
 
 .user-only {
