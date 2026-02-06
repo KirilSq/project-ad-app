@@ -1,9 +1,14 @@
-import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-auth.js";
+import {
+  onAuthStateChanged,
+  signOut,
+} from "https://www.gstatic.com/firebasejs/9.6.7/firebase-auth.js";
 import {
   ref,
   set,
   remove,
   update,
+  push,
+  child,
 } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-database.js";
 
 import { database, auth, app } from "./firebase-config.js";
@@ -20,15 +25,26 @@ function toggleNavbarElementsVisibility(isLoggedIn) {
 }
 
 export function setupNavbarElementsVisibility() {
-  onAuthStateChanged(auth, (user) => {
-    toggleNavbarElementsVisibility(!!user);
-  });
-
   document.addEventListener("DOMContentLoaded", () => {
     toggleNavbarElementsVisibility(!!auth.currentUser);
+    onAuthStateChanged(auth, (user) => {
+      console.log("Auth state changed, user:", user?.email);
+      toggleNavbarElementsVisibility(!!user);
+    });
   });
+  //Todo: Refactor so the following addition isn't randomly in this method
+  const signOutBtn = document.getElementById("signout-btn");
+  if (signOutBtn) {
+    signOutBtn.addEventListener("click", async () => {
+      try {
+        await signOut(auth);
+        console.log("User signed out successfully");
+      } catch (error) {
+        console.error("Error signing out: ", error);
+      }
+    });
+  }
 }
-
 async function removeFromFavorites(userId, adId) {
   try {
     await remove(ref(database, `users/${userId}/favorites/${adId}`));
